@@ -217,7 +217,14 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.42em;
   line-height: 1.9;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
-  height: min(64svh, 30em);
+}
+
+/* 2行構成: 2行目は一段下げて段違いに */
+.hero-catch .line { display: block; }
+
+.hero-catch .line + .line {
+  padding-inline-start: 2.6em;  /* 縦書きでは上からの字下げになる */
+  margin-block-start: 0.55em;   /* 行（列）間の間隔 */
 }
 
 .hero-catch .char {

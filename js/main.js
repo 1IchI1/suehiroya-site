@@ -9,14 +9,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- ヒーローキャッチコピーを一文字ずつ span に分解 ---
   const catchEl = document.querySelector(".hero-catch");
   if (catchEl) {
-    const text = catchEl.textContent.trim();
-    catchEl.textContent = "";
-    [...text].forEach((ch, i) => {
-      const span = document.createElement("span");
-      span.className = "char";
-      span.textContent = ch;
-      span.style.animationDelay = `${0.35 + i * 0.14}s`;
-      catchEl.appendChild(span);
+    // .line があれば行ごとに、なければ全体を一文字ずつ分解
+    const lines = catchEl.querySelectorAll(".line");
+    const targets = lines.length ? [...lines] : [catchEl];
+    let i = 0;
+    targets.forEach((el) => {
+      const text = el.textContent.trim();
+      el.textContent = "";
+      [...text].forEach((ch) => {
+        const span = document.createElement("span");
+        span.className = "char";
+        span.textContent = ch;
+        span.style.animationDelay = `${0.35 + i * 0.14}s`;
+        el.appendChild(span);
+        i++;
+      });
     });
   }
 
