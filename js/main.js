@@ -68,4 +68,55 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     );
   }
+
+  // --- 貸切風呂スライド ---
+  document.querySelectorAll(".bath-cards").forEach((slider) => {
+    const cards = [...slider.querySelectorAll(".bath-card")];
+    if (cards.length <= 1) return;
+
+    let current = 0;
+    const frame = document.createElement("div");
+    frame.className = "bath-slider";
+    slider.insertAdjacentElement("beforebegin", frame);
+    frame.appendChild(slider);
+
+    const controls = document.createElement("div");
+    controls.className = "bath-controls";
+
+    const prev = document.createElement("button");
+    prev.className = "bath-control";
+    prev.type = "button";
+    prev.setAttribute("aria-label", "前の温泉を見る");
+    prev.textContent = "‹";
+
+    const next = document.createElement("button");
+    next.className = "bath-control";
+    next.type = "button";
+    next.setAttribute("aria-label", "次の温泉を見る");
+    next.textContent = "›";
+
+    controls.append(prev, next);
+    frame.appendChild(controls);
+
+    const update = () => {
+      const gap = parseFloat(getComputedStyle(slider).columnGap) || 0;
+      const offset = current * (slider.clientWidth + gap);
+      cards.forEach((card) => {
+        card.style.transform = `translateX(${-offset}px)`;
+      });
+    };
+
+    prev.addEventListener("click", () => {
+      current = (current - 1 + cards.length) % cards.length;
+      update();
+    });
+
+    next.addEventListener("click", () => {
+      current = (current + 1) % cards.length;
+      update();
+    });
+
+    window.addEventListener("resize", update, { passive: true });
+    update();
+  });
 });
