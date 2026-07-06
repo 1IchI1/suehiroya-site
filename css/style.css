@@ -339,7 +339,7 @@ a { color: inherit; text-decoration: none; }
   content: "";
   position: absolute;
   top: 0;
-  right: calc(100% + 1mm);
+  left: calc(100% + 1mm);
   width: 1px;
   height: 100%;
   background: var(--accent);
