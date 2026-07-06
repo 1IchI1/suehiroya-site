@@ -26,6 +26,10 @@ body {
   color: var(--ink);
   line-height: 2;
   letter-spacing: 0.08em;
+  line-break: strict;
+  word-break: normal;
+  word-break: auto-phrase;
+  overflow-wrap: break-word;
   font-feature-settings: "palt";
   -webkit-font-smoothing: antialiased;
 }
@@ -60,6 +64,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 1.35rem;
   font-weight: 600;
   letter-spacing: 0.2em;
+  white-space: nowrap;
 }
 
 .brand small {
@@ -67,6 +72,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.62rem;
   letter-spacing: 0.35em;
   opacity: 0.8;
+  white-space: nowrap;
 }
 
 .global-nav ul {
@@ -80,6 +86,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.18em;
   position: relative;
   padding-bottom: 4px;
+  white-space: nowrap;
 }
 
 .global-nav a::after {
@@ -109,6 +116,7 @@ a { color: inherit; text-decoration: none; }
   padding: 0.65em 1.6em 0.65em 1.85em;
   border: 1px solid var(--accent);
   transition: background 0.4s ease, color 0.4s ease;
+  white-space: nowrap;
 }
 
 .btn-reserve:hover {
@@ -233,6 +241,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.42em;
   line-height: 1.9;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+  overflow-wrap: normal;
 }
 
 /* 2行構成: 2行目は一段下げて段違いに */
@@ -260,6 +269,7 @@ a { color: inherit; text-decoration: none; }
   opacity: 0;
   animation: fadeIn 1.6s ease 1.8s forwards;
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+  overflow-wrap: normal;
 }
 
 @keyframes fadeIn { to { opacity: 1; } }
@@ -349,9 +359,14 @@ a { color: inherit; text-decoration: none; }
   font-weight: 500;
   line-height: 2.2;
   margin-bottom: 1.6rem;
+  text-wrap: pretty;
 }
 
-.text { color: var(--ink-soft); font-size: 0.95rem; }
+.text {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  text-wrap: pretty;
+}
 
 .text + .text { margin-top: 1.2rem; }
 
@@ -425,10 +440,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 .room-card h3 small {
+  display: block;
   font-size: 0.7rem;
   color: var(--gold);
   letter-spacing: 0.3em;
-  margin-left: 0.7em;
+  margin-top: 0.25rem;
+  white-space: nowrap;
 }
 
 .room-card p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.9; }
@@ -512,6 +529,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.32em;
   color: var(--white);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+  overflow-wrap: normal;
 }
 
 .bath-name small {
@@ -675,6 +693,7 @@ a { color: inherit; text-decoration: none; }
   display: inline-block;
   color: var(--white);
   transition: color 0.4s ease;
+  white-space: nowrap;
 }
 
 .cta-band .tel:hover { color: var(--gold); }
@@ -778,10 +797,12 @@ a { color: inherit; text-decoration: none; }
 }
 
 .room-detail h3 small {
+  display: block;
   font-size: 0.68rem;
   color: var(--gold);
   letter-spacing: 0.3em;
-  margin-left: 0.8em;
+  margin-top: 0.35rem;
+  white-space: nowrap;
 }
 
 .tag-list {
@@ -875,4 +896,138 @@ a { color: inherit; text-decoration: none; }
   .room-cards { grid-template-columns: 1fr; }
 
   .bath-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  body {
+    letter-spacing: 0.04em;
+  }
+
+  .site-header {
+    padding: 0.85rem 1rem;
+  }
+
+  .site-header.scrolled {
+    padding: 0.55rem 1rem;
+  }
+
+  .brand {
+    font-size: 1.05rem;
+    letter-spacing: 0.12em;
+  }
+
+  .brand small {
+    font-size: 0.54rem;
+    letter-spacing: 0.16em;
+  }
+
+  .site-header .btn-reserve {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    padding: 0.45em 0.85em 0.45em 1em;
+  }
+
+  .hero {
+    min-height: 520px;
+  }
+
+  .hero-copy {
+    gap: 1.35rem;
+  }
+
+  .hero-catch {
+    font-size: clamp(1.85rem, 9vw, 2.35rem);
+    letter-spacing: 0.32em;
+    line-height: 1.65;
+  }
+
+  .hero-catch .line + .line {
+    padding-inline-start: 2.1em;
+    margin-block-start: 0.35em;
+  }
+
+  .hero-sub {
+    font-size: 0.78rem;
+    letter-spacing: 0.32em;
+  }
+
+  .section {
+    padding-inline: 1.15rem;
+  }
+
+  .lead {
+    font-size: 1.12rem;
+    line-height: 2.05;
+  }
+
+  .text {
+    font-size: 0.9rem;
+    line-height: 2;
+  }
+
+  .room-card h3,
+  .room-detail h3 {
+    letter-spacing: 0.12em;
+  }
+
+  .room-card h3 small,
+  .room-detail h3 small {
+    letter-spacing: 0.16em;
+  }
+
+  .info-table {
+    font-size: 0.84rem;
+  }
+
+  .info-table th,
+  .info-table td {
+    display: block;
+    width: 100%;
+    padding: 0.45rem 0;
+  }
+
+  .info-table th {
+    border-bottom: 0;
+  }
+
+  .cta-title,
+  .cta-sub,
+  .cta-tel .tel-label {
+    letter-spacing: 0.18em;
+    text-indent: 0.18em;
+  }
+
+  .cta-band .btn-reserve {
+    letter-spacing: 0.14em;
+    padding-inline: 1.45em;
+  }
+
+  .cta-band .tel {
+    font-size: clamp(1.55rem, 8vw, 2rem);
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand {
+    font-size: 0.98rem;
+  }
+
+  .brand small {
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .header-actions {
+    gap: 0.35rem;
+  }
+
+  .site-header .btn-reserve {
+    font-size: 0.68rem;
+    padding-inline: 0.7em;
+  }
+
+  .nav-toggle {
+    width: 34px;
+  }
 }
